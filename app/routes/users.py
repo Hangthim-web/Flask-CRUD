@@ -17,7 +17,7 @@ def register():
             flash(error,'danger')
             return redirect(url_for('auth.register'))
         flash("Account Created Successfully! ",'success')
-        return render_template('register.html')
+    return render_template('register.html')
 @auth_bp.route('/login',methods=['GET','POST'])   
 def login():
     if request.method == "POST":

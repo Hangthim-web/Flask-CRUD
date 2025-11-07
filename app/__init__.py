@@ -20,4 +20,6 @@ def create_app():
     bcrypt.init_app(app)
     migrate.init_app(app,db)
 
+    from app.routes.users import auth_bp
+    app.register_blueprint(auth_bp)
     return app

@@ -14,7 +14,7 @@ def register_user(first_name,last_name,email,password):
     return new_user,None 
 
 def authenticate_user(email,password):
-    user = User.query.filter_by(email=email)
+    user = User.query.filter_by(email=email).first()
     if user and bcrypt.check_password_hash(user.password,password):
         return user 
     return None

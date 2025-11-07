@@ -8,9 +8,15 @@ class User(db.Model):
     password = db.Column(db.String(255),nullable=False)
     email = db.Column(db.String(255),nullable=False,unique=True)
 
-    created_at = db.Column(db.DateTime,default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime,default=datetime.utcnow,onupate=datetime.utcnow)
-    deleted_at = db.Column(db.DateTine,nullable=True,index=True)
+    # created_at = db.Column(db.DateTime,default=datetime.utcnow)
+    # updated_at = db.Column(db.DateTime,default=datetime.utcnow,onupdate=datetime.utcnow)
+    # deleted_at = db.Column(db.DateTine,nullable=True,index=True)
+
+
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)  # No parentheses!
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True, index=True)
+
 
 
     def __repr__(self):
