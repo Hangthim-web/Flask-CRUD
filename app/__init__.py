@@ -21,5 +21,7 @@ def create_app():
     migrate.init_app(app,db)
 
     from app.routes.users import auth_bp
+    from app.routes.blogs import blogs_bp
     app.register_blueprint(auth_bp)
+    app.register_blueprint(blogs_bp)
     return app
