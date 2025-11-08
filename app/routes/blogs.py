@@ -21,3 +21,23 @@ def list_all_blogs__():
     blog_lists = get_all_blogs()
     return render_template('blog/list.html',blogs=blog_lists)
 
+@blogs_bp.route('/blogs/<int:blog_id>/edit',methods=["GET","POST"])
+def edit(blog_id):
+    blog = get_blog_by_id(blog_id)
+    if request.method == "POST":
+        blog.title = request.form.get('title')
+        blog.description = request.form.get('description')
+        db.session.commit()
+
+        flash('Blog Updated Successfully','success')
+        return redirect(url_for('blogs.list_all_blogs__'))
+    return render_template('blog/edit.html',blog=blog)
+
+@blogs_bp.route('/blogs/<int:blog_id>/delete')
+def delete(blog_id):
+    blog = Blog.query.get_or_404(blog_id)
+    db.session.delete(blog)
+    db.session.commit()
+
+    flash('Blog deleted successfully','success')
+    return redirect(url_for('blogs.list_all_blogs__'))

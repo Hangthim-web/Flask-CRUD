@@ -1,5 +1,31 @@
 {% extends 'index.html' %}
 {% block title %} List blogs {% endblock %}
 {% block content %}
-<p>Here lies the list of blogs . </p>
+<h2>Blog List</h2>
+{% if blogs  %}
+
+<table cellpadding="10">
+<tr>
+    <th>Title</th>
+    <th>
+        Description
+    </th>
+    <th>Actions</th>
+    </tr>
+    {% for blog in blogs %}
+    <tr>
+        <td>{{ blog.title }}</td>
+        <td>{{ blog.description }}</td>
+        <td>
+            <a href="{{ url_for('blogs.edit',blog_id=blog.id) }}">Edit</a>
+            <a href="{{ url_for('blogs.delete',blog_id=blog.id) }}" onclick="return confirm('Delete this blog ?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No Blogs yet</p>
+
+
+{% endif %}
 {% endblock %}
